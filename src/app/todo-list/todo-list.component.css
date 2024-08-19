@@ -1,0 +1,21 @@
+.container {
+  max-width: 600px;
+}
+
+h2 {
+  color: #333;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.text-decoration-line-through {
+  text-decoration: line-through;
+  color: #6c757d;
+}
