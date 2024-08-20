@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 interface GroceryItem {
@@ -13,7 +13,8 @@ interface GroceryItem {
   imports: [
     NgForOf,
     FormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
@@ -21,6 +22,8 @@ interface GroceryItem {
 export class TodoListComponent {
   newItem: string = '';
   items: GroceryItem[] = [];
+  editingItem: GroceryItem | null = null;
+  editedTitle: string = '';
 
   addItem() {
     if (this.newItem.trim()) {
@@ -31,5 +34,23 @@ export class TodoListComponent {
 
   toggleCompletion(item: GroceryItem) {
     item.completed = !item.completed;
+  }
+
+  startEditing(item: GroceryItem) {
+    this.editingItem = item;
+    this.editedTitle = item.title;
+  }
+
+  saveEdit(item: GroceryItem) {
+    if (this.editedTitle.trim()) {
+      item.title = this.editedTitle.trim();
+      this.editingItem = null;
+      this.editedTitle = '';
+    }
+  }
+
+  cancelEdit() {
+    this.editingItem = null;
+    this.editedTitle = '';
   }
 }
