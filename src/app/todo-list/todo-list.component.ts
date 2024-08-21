@@ -53,4 +53,8 @@ export class TodoListComponent {
     this.editingItem = null;
     this.editedTitle = '';
   }
+
+  deleteItem(item: GroceryItem) {
+    this.items = this.items.filter(i => i !== item);
+  }
 }
